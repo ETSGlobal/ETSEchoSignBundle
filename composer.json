@@ -1,0 +1,21 @@
+{
+    "name": "ets/echosign-bundle",
+    "type": "symfony-bundle",
+    "description": "EchoSign Bundle contains methods to interact with EchoSign WebServices",
+    "keywords": ["echosign", "api"],
+    "homepage": "https://github.com/ETSGlobal/ETSEchoSignBundle",
+    "license": "Apache2",
+    "authors": [
+        {
+            "name": "ETS dev team",
+            "email": "e4-devteam@etsglobal.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "autoload": {
+        "psr-0": { "ETS\\EchoSignBundle": "" }
+    },
+    "target-dir": "ETS/EchoSignBundle"
+}
