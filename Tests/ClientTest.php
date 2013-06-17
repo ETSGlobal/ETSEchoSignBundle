@@ -17,6 +17,8 @@
 
 namespace ETS\EchoSignBundle\Tests;
 
+use ETS\EchoSignBundle\Api\Client;
+
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -134,6 +136,29 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, count($documentList));
         $this->assertEquals('toto', $documentList[0]['documentKey']);
         $this->assertEquals('tata', $documentList[1]['documentKey']);
+    }
+
+    /**
+     * Test get document url
+     */
+    public function testGetDocumentUrls()
+    {
+        $returnValue = (object) array(
+            'getDocumentUrlsResult' => (object) array(
+                'urls' => (object) array(
+                    'DocumentUrl' => (object) array(
+                        'url' => 'http://test.com/test.pdf'
+                    )
+                ),
+                'errorMessage' => 'Error',
+                'errorCode' => 'DOCUMENT_DOES_NOT_EXIST',
+                'success' => true
+            )
+        );
+        $mockClient = $this->getMockClient($returnValue);
+        $documentUrl = $mockClient->getDocumentUrls('2AAABLblqZhAatPUGPa42G_5hoyzCgrbqNMnAezZM9umIpMeDzpLxy42l9Mi2mnCRZj2hT-3qRiA*');
+
+        $this->assertEquals('http://test.com/test.pdf', $documentUrl);
     }
 
     /**

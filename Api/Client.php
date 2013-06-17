@@ -142,6 +142,26 @@ class Client
     }
 
     /**
+     * Get combined documents pdf url
+     *
+     * @param $documentKey
+     *
+     * @return string
+     */
+    public function getDocumentUrls($documentKey)
+    {
+        $result = $this->apiCall('getDocumentUrls', array(
+            'apiKey' => $this->key,
+            'documentKey' => $documentKey,
+            'options' => array(
+                'combine' => true
+            )
+        ));
+
+        return $result->getDocumentUrlsResult->urls->DocumentUrl->url;
+    }
+    
+    /**
      * Make an api call
      *
      * @param string $method
