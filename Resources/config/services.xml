@@ -13,6 +13,7 @@
             <argument>%ets.echo.sign.api.key%</argument>
             <argument>%ets.echo.sign.api.gateway%</argument>
             <argument>%ets.echo.sign.api.wsdl%</argument>
+            <argument>%ets.echo.sign.debug.prefix%</argument>
         </service>
     </services>
 </container>

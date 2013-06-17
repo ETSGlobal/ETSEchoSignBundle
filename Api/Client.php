@@ -39,11 +39,17 @@ class Client
      */
     private $soapClient;
 
-    public function __construct($key, $gateway, $wsdl)
+    /**
+     * @var string debug prefix
+     */
+    private $debugPrefix;
+
+    public function __construct($key, $gateway, $wsdl, $debugPrefix)
     {
         $this->key = $key;
         $this->gateway = $gateway;
         $this->wsdl = $wsdl;
+        $this->debugPrefix = $debugPrefix;
     }
 
     /**
@@ -66,6 +72,10 @@ class Client
      */
     public function sendDocument(DocumentCreationInfo $documentInfo)
     {
+        if ($this->debugPrefix) {
+            $documentInfo->setDebugPrefix($this->debugPrefix);
+        }
+
         $result = $this->apiCall('sendDocument', array(
             'apiKey' => $this->key,
             'documentCreationInfo' => $documentInfo->build()

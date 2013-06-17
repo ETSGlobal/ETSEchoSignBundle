@@ -49,5 +49,6 @@ class ETSEchoSignExtension extends Extension
         $container->setParameter('ets.echo.sign.api.key', $config['api']['key']);
         $container->setParameter('ets.echo.sign.api.gateway', $config['api']['gateway']);
         $container->setParameter('ets.echo.sign.api.wsdl', $config['api']['wsdl']);
+        $container->setParameter('ets.echo.sign.debug.prefix', $config['debug']['prefix']);
     }
 }

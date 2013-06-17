@@ -56,6 +56,10 @@ class DocumentCreationInfo implements ParameterInterface
     private $optionalParams = array();
 
     /**
+     * @var string
+     */
+    private $debugPrefix;
+    /**
      * Constructor
      *
      * @param RecipientInfoCollection $recipients
@@ -90,7 +94,7 @@ class DocumentCreationInfo implements ParameterInterface
 
         return array_merge(array(
             'fileInfos' => $this->fileInfos->build(),
-            'name' => $this->name,
+            'name' => $this->getDebugPrefix() ? $this->getDebugPrefix() . $this->name : $this->name,
             'signatureFlow' => $this->signatureFlow,
             'signatureType' => $this->signatureType,
             'recipients' => $this->recipients->build()
@@ -105,5 +109,21 @@ class DocumentCreationInfo implements ParameterInterface
     public function isValid()
     {
         return $this->recipients && $this->name && $this->fileInfos && $this->signatureType && $this->signatureFlow;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDebugPrefix()
+    {
+        return $this->debugPrefix;
+    }
+
+    /**
+     * @param string $debugPrefix
+     */
+    public function setDebugPrefix($debugPrefix)
+    {
+        $this->debugPrefix = $debugPrefix;
     }
 }
