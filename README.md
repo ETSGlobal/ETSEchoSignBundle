@@ -3,6 +3,8 @@ ETSEchoSignBundle
 
 ETSEchoSignBundle provides a wrapper to EchoSign APIs: https://secure.echosign.com/public/docs/EchoSignDocumentService16
 
+[![Build Status](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME].png)](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME])
+
 Installation
 =================
 You can install the bundle by using composer.
@@ -35,6 +37,7 @@ Client service offer three wrappers to the most used methods:
 - sendDocument
 - getDocumentInfo
 - removeDocument
+- getMyDocuments
 
 **To send a document:**
 ```
