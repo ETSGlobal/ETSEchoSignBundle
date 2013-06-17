@@ -88,10 +88,6 @@ class DocumentCreationInfo implements ParameterInterface
      */
     public function build()
     {
-        if (!$this->isValid()) {
-            throw new \InvalidArgumentException('Parameters are not valid, please check the required parameters as in Echo Sign API doc');
-        }
-
         return array_merge(array(
             'fileInfos' => $this->fileInfos->build(),
             'name' => $this->getDebugPrefix() ? $this->getDebugPrefix() . $this->name : $this->name,
@@ -99,16 +95,6 @@ class DocumentCreationInfo implements ParameterInterface
             'signatureType' => $this->signatureType,
             'recipients' => $this->recipients->build()
         ), $this->optionalParams);
-    }
-
-    /**
-     * Indicate if the arguments are valid
-     *
-     * @return bool
-     */
-    public function isValid()
-    {
-        return $this->recipients && $this->name && $this->fileInfos && $this->signatureType && $this->signatureFlow;
     }
 
     /**

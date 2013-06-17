@@ -20,13 +20,6 @@ namespace ETS\EchoSignBundle\Api;
 interface ParameterInterface
 {
     /**
-     * Indicate if the argument is valid
-     *
-     * @return bool
-     */
-    public function isValid();
-
-    /**
      * Build the params array
      *
      * @return array

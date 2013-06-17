@@ -45,16 +45,6 @@ class RecipientInfo implements ParameterInterface
     }
 
     /**
-     * Indicate if the arguments are valid
-     *
-     * @return bool
-     */
-    public function isValid()
-    {
-        return $this->email && $this->role;
-    }
-
-    /**
      * Build the params array
      *
      * @return array

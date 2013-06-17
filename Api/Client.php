@@ -134,9 +134,11 @@ class Client
      */
     public function getMyDocuments()
     {
-        return $this->apiCall('getMyDocuments', array(
+        $result = $this->apiCall('getMyDocuments', array(
             'apiKey' => $this->key
         ));
+
+        return $result->getMyDocumentsResult->documentListForUser->DocumentListItem;
     }
 
     /**

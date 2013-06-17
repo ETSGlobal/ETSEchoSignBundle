@@ -53,14 +53,4 @@ class FileInfo implements ParameterInterface
             'fileName' => $this->filename
         );
     }
-
-    /**
-     * Indicate if the arguments are valid
-     *
-     * @return bool
-     */
-    public function isValid()
-    {
-        return $this->filename && $this->file;
-    }
 }

@@ -47,21 +47,6 @@ class RecipientInfoCollection implements ParameterInterface
     }
 
     /**
-     * Indicate if the arguments are valid
-     *
-     * @return bool
-     */
-    public function isValid()
-    {
-        $isValid = true;
-        foreach ($this->recipientInfos as $recipientInfo) {
-            $isValid = $isValid && $recipientInfo->isValid();
-        }
-
-        return $isValid;
-    }
-
-    /**
      * Build the params array
      *
      * @return array

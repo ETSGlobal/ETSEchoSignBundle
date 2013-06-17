@@ -18,6 +18,9 @@ class ETSEchoSignExtensionTest extends \PHPUnit_Framework_TestCase
                     'key' => 'API_KEY',
                     'gateway' => 'API_GATEWAY',
                     'wsdl' => 'API_WSDL'
+                ),
+                'debug' => array(
+                    'prefix' => 'TEST_'
                 )
             )
         );
@@ -27,5 +30,6 @@ class ETSEchoSignExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('API_KEY', $container->getParameter('ets.echo.sign.api.key'));
         $this->assertEquals('API_GATEWAY', $container->getParameter('ets.echo.sign.api.gateway'));
         $this->assertEquals('API_WSDL', $container->getParameter('ets.echo.sign.api.wsdl'));
+        $this->assertEquals('TEST_', $container->getParameter('ets.echo.sign.debug.prefix'));
     }
 }

@@ -17,10 +17,11 @@
 
 namespace ETS\EchoSignBundle\Tests;
 
-use ETS\EchoSignBundle\Api\Client;
-
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Test send document
+     */
     public function testSendDocument()
     {
         $documentCreationInfo = $this->getMockBuilder('ETS\EchoSignBundle\Api\DocumentCreationInfo')
@@ -43,6 +44,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('mock_document_key', $documentKey);
     }
 
+    /**
+     * Test get document info
+     */
     public function testGetDocumentInfo()
     {
         $returnValue = (object) array(
@@ -51,15 +55,14 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-//        $client = new Client('UU2LRI3B3N6J2X', 'https://secure.echosign.com/services/EchoSignDocumentService16', 'https://secure.echosign.com/services/EchoSignDocumentService16?wsdl');
-//        $documents = $client->getMyDocuments();
-//        $document = $client->getDocumentInfo('2AAABLblqZhAOvsym2VXzCwah591GkBmjrFACn_OMIM3KY5iWl3jsR0xcO3Rb1Ip_tN1HiI-uzb8*');
-
         $mockClient = $this->getMockClient($returnValue);
         $result = $mockClient->getDocumentInfo('mock_document_key');
         $this->assertEquals($result->DocumentInfo->status, 'OUT_FOR_APPROVAL');
     }
 
+    /**
+     * Test remove document
+     */
     public function testRemoveDocument()
     {
         $returnValue = (object) array(
@@ -92,6 +95,51 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $mockClient->removeDocument('mock_document_key');
     }
 
+    /**
+     * Test get info on document that does not exist
+     */
+    public function testGetNotExistDocumentInfo()
+    {
+        $mockClient = $this->getMock('ETS\EchoSignBundle\Api\Client', array('apiCall'), array('key', 'gateway', 'wsdl'));
+        $mockClient->expects($this->any())
+            ->method('apiCall')
+            ->will($this->throwException(new \SoapFault('0', 'SoapFault')));
+
+        $result = $mockClient->getDocumentInfo('mock_document_key');
+        $this->assertNull($result);
+    }
+
+    public function testGetMyDocuments()
+    {
+        $returnValue = (object) array(
+            'getMyDocumentsResult' => (object) array(
+                'documentListForUser' => (object) array(
+                    'DocumentListItem' => array(
+                        array(
+                            'documentKey' => 'toto'
+                        ),
+                        array(
+                            'documentKey' => 'tata'
+                        )
+                    )
+                ),
+                'errorMessage' => 'Error',
+                'errorCode' => 'DOCUMENT_DOES_NOT_EXIST',
+                'success' => true
+            )
+        );
+
+        $mockClient = $this->getMockClient($returnValue);
+        $documentList = $mockClient->getMyDocuments();
+        $this->assertEquals(2, count($documentList));
+        $this->assertEquals('toto', $documentList[0]['documentKey']);
+        $this->assertEquals('tata', $documentList[1]['documentKey']);
+    }
+
+    /**
+     * @param $returnValue
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
     private function getMockClient($returnValue)
     {
         $mockClient = $this->getMock('ETS\EchoSignBundle\Api\Client', array('apiCall'), array('key', 'gateway', 'wsdl'));
@@ -100,5 +148,14 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($returnValue));
 
         return $mockClient;
+    }
+
+    private function arrayToObject($arr)
+    {
+        if (is_array($arr)) {
+            return (object) array_map(array($this, 'arrayToObject'), $arr);
+        }
+
+        return $arr;
     }
 }

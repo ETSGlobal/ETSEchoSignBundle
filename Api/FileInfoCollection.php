@@ -47,21 +47,6 @@ class FileInfoCollection implements ParameterInterface
     }
 
     /**
-     * Indicate if the arguments are valid
-     *
-     * @return bool
-     */
-    public function isValid()
-    {
-        $isValid = true;
-        foreach ($this->fileInfos as $fileInfo) {
-            $isValid = $isValid && $fileInfo->isValid();
-        }
-
-        return $isValid;
-    }
-
-    /**
      * Build the params array
      *
      * @return array
