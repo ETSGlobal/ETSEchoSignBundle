@@ -3,7 +3,7 @@ ETSEchoSignBundle
 
 ETSEchoSignBundle provides a wrapper to EchoSign APIs: https://secure.echosign.com/public/docs/EchoSignDocumentService16
 
-[![Build Status](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME].png)](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME])
+[![Build Status](https://api.travis-ci.org/ETSGlobal/ETSEchoSignBundle.png)](https://api.travis-ci.org/ETSGlobal/ETSEchoSignBundle])
 
 Installation
 =================
