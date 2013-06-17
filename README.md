@@ -20,8 +20,8 @@ The bundle requires 3 mandatory parameters, in your config.yml:
 ets_echo_sign:
     api:
         key:  YOUR_API_KEY
-        gateway:  ECHOSIGN_API_GATEWAY #default: https://secure.echosign.com/services/EchoSignDocumentService16
-        wsdl:  ECHOSIGN_API_WSDL_URL #default: https://secure.echosign.com/services/EchoSignDocumentService16?wsdl
+        gateway:  ECHOSIGN_API_GATEWAY #e.g: https://secure.echosign.com/services/EchoSignDocumentService16
+        wsdl:  ECHOSIGN_API_WSDL_URL #e.g: https://secure.echosign.com/services/EchoSignDocumentService16?wsdl
 ```
 You could also activate the debug option:
 ```
