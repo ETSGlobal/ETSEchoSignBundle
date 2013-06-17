@@ -149,13 +149,4 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         return $mockClient;
     }
-
-    private function arrayToObject($arr)
-    {
-        if (is_array($arr)) {
-            return (object) array_map(array($this, 'arrayToObject'), $arr);
-        }
-
-        return $arr;
-    }
 }
