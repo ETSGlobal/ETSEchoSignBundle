@@ -17,6 +17,8 @@
 
 namespace ETS\EchoSignBundle\Tests;
 
+use ETS\EchoSignBundle\Api\Client;
+
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
     public function testSendDocument()
@@ -48,6 +50,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
                 'status' => 'OUT_FOR_APPROVAL'
             )
         );
+
+//        $client = new Client('UU2LRI3B3N6J2X', 'https://secure.echosign.com/services/EchoSignDocumentService16', 'https://secure.echosign.com/services/EchoSignDocumentService16?wsdl');
+//        $documents = $client->getMyDocuments();
+//        $document = $client->getDocumentInfo('2AAABLblqZhAOvsym2VXzCwah591GkBmjrFACn_OMIM3KY5iWl3jsR0xcO3Rb1Ip_tN1HiI-uzb8*');
 
         $mockClient = $this->getMockClient($returnValue);
         $result = $mockClient->getDocumentInfo('mock_document_key');

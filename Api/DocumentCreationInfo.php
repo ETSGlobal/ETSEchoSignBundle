@@ -69,7 +69,7 @@ class DocumentCreationInfo implements ParameterInterface
      * @param $signatureFlow
      * @param array $optionalParams
      */
-    public function __construct(RecipientInfoCollection $recipients, $name, FileInfoCollection $fileInfos, $signatureType, $signatureFlow, array $optionalParams = array())
+    public function __construct(RecipientInfoCollection $recipients, $name, FileInfoCollection $fileInfos, $signatureType = DocumentCreationInfo::SIGNATURE_TYPE_ESIGN, $signatureFlow = DocumentCreationInfo::SIGNATURE_FLOW_SENDER_SIGNATURE_NOT_REQUIRED, array $optionalParams = array())
     {
         $this->recipients = $recipients;
         $this->name = $name;

@@ -44,7 +44,7 @@ class Client
      */
     private $debugPrefix;
 
-    public function __construct($key, $gateway, $wsdl, $debugPrefix)
+    public function __construct($key, $gateway, $wsdl, $debugPrefix = null)
     {
         $this->key = $key;
         $this->gateway = $gateway;
@@ -93,10 +93,15 @@ class Client
      */
     public function getDocumentInfo($documentKey)
     {
-        return $this->apiCall('getDocumentInfo', array(
-            'apiKey' => $this->key,
-            'documentKey' => $documentKey
-        ));
+        try {
+            return $this->apiCall('getDocumentInfo', array(
+                'apiKey' => $this->key,
+                'documentKey' => $documentKey
+            ));
+        } catch (\SoapFault $e) {
+            return null;
+        }
+
     }
 
     /**
@@ -120,6 +125,18 @@ class Client
         }
 
         return $result->removeDocumentResult->success;
+    }
+
+    /**
+     * Get my documents
+     *
+     * @return stdClass
+     */
+    public function getMyDocuments()
+    {
+        return $this->apiCall('getMyDocuments', array(
+            'apiKey' => $this->key
+        ));
     }
 
     /**

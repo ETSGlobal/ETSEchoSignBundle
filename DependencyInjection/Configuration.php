@@ -51,6 +51,12 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                     ->end()
+                    ->arrayNode('debug')
+                        ->addDefaultsIfNotSet()
+                        ->children()
+                            ->scalarNode('prefix')->defaultNull()->end()
+                        ->end()
+                    ->end()
                 ->end()
             ->end();
     }

@@ -46,9 +46,12 @@ class ETSEchoSignExtension extends Extension
         $xmlLoader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $xmlLoader->load('services.xml');
 
-        $container->setParameter('ets.echo.sign.api.key', $config['api']['key']);
-        $container->setParameter('ets.echo.sign.api.gateway', $config['api']['gateway']);
-        $container->setParameter('ets.echo.sign.api.wsdl', $config['api']['wsdl']);
-        $container->setParameter('ets.echo.sign.debug.prefix', $config['debug']['prefix']);
+        foreach ($config['api'] as $key => $value) {
+            $container->setParameter(sprintf('ets.echo.sign.api.%s', $key), $value);
+        }
+
+        foreach ($config['debug'] as $key => $value) {
+            $container->setParameter(sprintf('ets.echo.sign.debug.%s', $key), $value);
+        }
     }
 }

@@ -25,6 +25,18 @@ class FileInfoCollection implements ParameterInterface
     private $fileInfos = array();
 
     /**
+     * Constructor
+     *
+     * @param array $fileInfos
+     */
+    public function __construct($fileInfos = array())
+    {
+        foreach ($fileInfos as $fileInfo) {
+            $this->addFileInfo($fileInfo);
+        }
+    }
+
+    /**
      * Add FileInfo to the collection
      *
      * @param FileInfo $fileInfo
