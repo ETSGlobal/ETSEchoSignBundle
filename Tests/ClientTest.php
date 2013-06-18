@@ -18,6 +18,7 @@
 namespace ETS\EchoSignBundle\Tests;
 
 use ETS\EchoSignBundle\Api\Client;
+use ETS\EchoSignBundle\Exception\DocumentNotFoundException;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -81,7 +82,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException ETS\EchoSignBundle\Exception\DocumentNotFoundException
      */
     public function testRemoveDocumentWithError()
     {

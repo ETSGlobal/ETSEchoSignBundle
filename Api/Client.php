@@ -17,6 +17,8 @@
 
 namespace ETS\EchoSignBundle\Api;
 
+use ETS\EchoSignBundle\Exception\DocumentNotFoundException;
+
 class Client
 {
     /**
@@ -121,7 +123,8 @@ class Client
         ));
 
         if ($result->removeDocumentResult->errorMessage || !$result->removeDocumentResult->success) {
-            throw new \Exception(sprintf('Error while removing document with key: %s. Error message: %s. Error code: %s', $documentKey, $result->removeDocumentResult->errorMessage, $result->removeDocumentResult->errorCode));
+
+            throw new DocumentNotFoundException($documentKey, $result->removeDocumentResult->errorMessage, $result->removeDocumentResult->errorCode);
         }
 
         return $result->removeDocumentResult->success;
@@ -160,7 +163,7 @@ class Client
 
         return $result->getDocumentUrlsResult->urls->DocumentUrl->url;
     }
-    
+
     /**
      * Make an api call
      *
