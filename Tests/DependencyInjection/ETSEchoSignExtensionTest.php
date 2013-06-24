@@ -13,7 +13,7 @@ class ETSEchoSignExtensionTest extends \PHPUnit_Framework_TestCase
         $container = new ContainerBuilder();
         $container->setParameter('kernel.cache_dir', __DIR__.'/');
         $config = array(
-            'ets_echosign' => array(
+            'ets_echo_sign' => array(
                 'api' => array(
                     'key' => 'API_KEY',
                     'gateway' => 'API_GATEWAY',
@@ -27,9 +27,9 @@ class ETSEchoSignExtensionTest extends \PHPUnit_Framework_TestCase
         $extension = new ETSEchoSignExtension();
         $extension->load($config, $container);
 
-        $this->assertEquals('API_KEY', $container->getParameter('ets.echosign.api.key'));
-        $this->assertEquals('API_GATEWAY', $container->getParameter('ets.echosign.api.gateway'));
-        $this->assertEquals('API_WSDL', $container->getParameter('ets.echosign.api.wsdl'));
-        $this->assertEquals('TEST_', $container->getParameter('ets.echosign.debug.prefix'));
+        $this->assertEquals('API_KEY', $container->getParameter('ets.echo.sign.api.key'));
+        $this->assertEquals('API_GATEWAY', $container->getParameter('ets.echo.sign.api.gateway'));
+        $this->assertEquals('API_WSDL', $container->getParameter('ets.echo.sign.api.wsdl'));
+        $this->assertEquals('TEST_', $container->getParameter('ets.echo.sign.debug.prefix'));
     }
 }
