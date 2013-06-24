@@ -47,11 +47,11 @@ class ETSEchoSignExtension extends Extension
         $xmlLoader->load('services.xml');
 
         foreach ($config['api'] as $key => $value) {
-            $container->setParameter(sprintf('ets.echo.sign.api.%s', $key), $value);
+            $container->setParameter(sprintf('ets.echosign.api.%s', $key), $value);
         }
 
         foreach ($config['debug'] as $key => $value) {
-            $container->setParameter(sprintf('ets.echo.sign.debug.%s', $key), $value);
+            $container->setParameter(sprintf('ets.echosign.debug.%s', $key), $value);
         }
     }
 }

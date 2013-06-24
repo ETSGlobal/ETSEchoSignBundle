@@ -15,8 +15,13 @@
  * limitations under the License.
  */
 
-namespace ETS\EchoSignBundle\Api;
+namespace ETS\EchoSignBundle\Api\Parameter;
 
+/**
+ * Interface ParameterInterface
+ *
+ * @package ETS\EchoSignBundle\Api\Parameter
+ */
 interface ParameterInterface
 {
     /**

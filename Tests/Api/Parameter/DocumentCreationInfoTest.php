@@ -15,15 +15,23 @@
  * limitations under the License.
  */
 
-namespace ETS\EchoSignBundle\Tests\Parameters;
+namespace ETS\EchoSignBundle\Tests\Api\Parameter;
 
-use ETS\EchoSignBundle\Api\DocumentCreationInfo;
-use ETS\EchoSignBundle\Api\FileInfo;
-use ETS\EchoSignBundle\Api\FileInfoCollection;
-use ETS\EchoSignBundle\Api\RecipientInfoCollection;
+use ETS\EchoSignBundle\Api\Parameter\DocumentCreationInfo;
+use ETS\EchoSignBundle\Api\Parameter\FileInfo;
+use ETS\EchoSignBundle\Api\Parameter\FileInfoCollection;
+use ETS\EchoSignBundle\Api\Parameter\RecipientInfoCollection;
 
+/**
+ * Class DocumentCreationInfoTest
+ *
+ * @package ETS\EchoSignBundle\Tests\Api\Parameter
+ */
 class DocumentCreationInfoTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Test build method
+     */
     public function testBuild()
     {
         $recipients = new RecipientInfoCollection(array(
@@ -31,7 +39,7 @@ class DocumentCreationInfoTest extends \PHPUnit_Framework_TestCase
         ));
 
         $fileCollections = new FileInfoCollection();
-        $fileCollections->addFileInfo(new FileInfo('fixture.txt', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'fixture.txt'));
+        $fileCollections->addFileInfo(new FileInfo('fixture.txt', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'fixture.txt'));
         $documentCreationInfo = new DocumentCreationInfo($recipients, 'Test document', $fileCollections, DocumentCreationInfo::SIGNATURE_TYPE_ESIGN, DocumentCreationInfo::SIGNATURE_FLOW_SENDER_SIGNATURE_NOT_REQUIRED);
         $documentCreationInfoParams = $documentCreationInfo->build();
         $this->assertEquals('This is a fixture file used for unit testing', $documentCreationInfoParams['fileInfos'][0]['file']);

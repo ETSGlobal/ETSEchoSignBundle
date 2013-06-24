@@ -17,8 +17,14 @@
 
 namespace ETS\EchoSignBundle\Api;
 
+use ETS\EchoSignBundle\Api\Parameter\DocumentCreationInfo;
 use ETS\EchoSignBundle\Exception\DocumentNotFoundException;
 
+/**
+ * Class Client contains method to call EchoSign API
+ *
+ * @package ETS\EchoSignBundle\Api
+ */
 class Client
 {
     /**
@@ -78,7 +84,7 @@ class Client
             $documentInfo->setDebugPrefix($this->debugPrefix);
         }
 
-        $result = $this->apiCall('sendDocument', array(
+        $result = $this->call('sendDocument', array(
             'apiKey' => $this->key,
             'documentCreationInfo' => $documentInfo->build()
         ));
@@ -96,7 +102,7 @@ class Client
     public function getDocumentInfo($documentKey)
     {
         try {
-            return $this->apiCall('getDocumentInfo', array(
+            return $this->call('getDocumentInfo', array(
                 'apiKey' => $this->key,
                 'documentKey' => $documentKey
             ));
@@ -117,7 +123,7 @@ class Client
      */
     public function removeDocument($documentKey)
     {
-        $result = $this->apiCall('removeDocument', array(
+        $result = $this->call('removeDocument', array(
             'apiKey' => $this->key,
             'documentKey' => $documentKey
         ));
@@ -137,7 +143,7 @@ class Client
      */
     public function getMyDocuments()
     {
-        $result = $this->apiCall('getMyDocuments', array(
+        $result = $this->call('getMyDocuments', array(
             'apiKey' => $this->key
         ));
 
@@ -153,7 +159,7 @@ class Client
      */
     public function getDocumentUrls($documentKey)
     {
-        $result = $this->apiCall('getDocumentUrls', array(
+        $result = $this->call('getDocumentUrls', array(
             'apiKey' => $this->key,
             'documentKey' => $documentKey,
             'options' => array(
@@ -172,7 +178,7 @@ class Client
      *
      * @return stdClass result of the api call
      */
-    protected function apiCall($method, array $params)
+    protected function call($method, array $params)
     {
         return call_user_func(array($this->getSoapClient(), $method), $params);
     }

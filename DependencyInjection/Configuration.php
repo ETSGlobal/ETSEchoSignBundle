@@ -33,7 +33,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
 
         return $treeBuilder
-            ->root('ets_echo_sign')
+            ->root('ets_echosign')
                 ->children()
                     ->arrayNode('api')
                         ->children()

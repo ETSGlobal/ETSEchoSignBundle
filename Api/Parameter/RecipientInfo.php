@@ -15,30 +15,38 @@
  * limitations under the License.
  */
 
-namespace ETS\EchoSignBundle\Api;
+namespace ETS\EchoSignBundle\Api\Parameter;
 
-class FileInfo implements ParameterInterface
+/**
+ * Class RecipientInfo contains information about the recipient
+ *
+ * @package ETS\EchoSignBundle\Api\Parameter
+ */
+class RecipientInfo implements ParameterInterface
 {
-    /**
-     * @var string
-     */
-    private $filename;
+    const RECIPIENT_ROLE_SIGNER = 'SIGNER';
+    const RECIPIENT_ROLE_APPROVER = 'APPROVER';
 
     /**
      * @var string
      */
-    private $file;
+    private $email;
+
+    /**
+     * @var string
+     */
+    private $role;
 
     /**
      * Constructor
      *
-     * @param $filename
-     * @param $file
+     * @param $email
+     * @param string $role
      */
-    public function __construct($filename, $file)
+    public function __construct($email, $role = RecipientInfo::RECIPIENT_ROLE_SIGNER)
     {
-        $this->filename = $filename;
-        $this->file = $file;
+        $this->email = $email;
+        $this->role = $role;
     }
 
     /**
@@ -49,8 +57,8 @@ class FileInfo implements ParameterInterface
     public function build()
     {
         return array(
-            'file' => file_get_contents($this->file),
-            'fileName' => $this->filename
+            'email' => $this->email,
+            'role' => $this->role
         );
     }
 }

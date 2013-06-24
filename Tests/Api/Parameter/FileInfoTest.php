@@ -15,15 +15,23 @@
  * limitations under the License.
  */
 
-namespace ETS\EchoSignBundle\Tests\Parameters;
+namespace ETS\EchoSignBundle\Tests\Api\Parameter;
 
-use ETS\EchoSignBundle\Api\FileInfo;
+use ETS\EchoSignBundle\Api\Parameter\FileInfo;
 
+/**
+ * Class FileInfoTest
+ *
+ * @package ETS\EchoSignBundle\Tests\Api\Parameter
+ */
 class FileInfoTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Test build method
+     */
     public function testBuild()
     {
-        $fileInfo = new FileInfo('fixture.txt', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'fixture.txt');
+        $fileInfo = new FileInfo('fixture.txt', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'fixture.txt');
         $result = $fileInfo->build();
         $this->assertEquals('This is a fixture file used for unit testing', $result['file']);
         $this->assertEquals('fixture.txt', $result['fileName']);

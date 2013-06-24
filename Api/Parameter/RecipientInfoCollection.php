@@ -15,35 +15,40 @@
  * limitations under the License.
  */
 
-namespace ETS\EchoSignBundle\Api;
+namespace ETS\EchoSignBundle\Api\Parameter;
 
-class FileInfoCollection implements ParameterInterface
+/**
+ * Class RecipientInfoCollection contains a collection of recipients
+ *
+ * @package ETS\EchoSignBundle\Api\Parameter
+ */
+class RecipientInfoCollection implements ParameterInterface
 {
     /**
      * @var array
      */
-    private $fileInfos = array();
+    private $recipientInfos = array();
 
     /**
      * Constructor
      *
-     * @param array $fileInfos
+     * @param array $recipients
      */
-    public function __construct($fileInfos = array())
+    public function __construct($recipients = array())
     {
-        foreach ($fileInfos as $fileInfo) {
-            $this->addFileInfo($fileInfo);
+        foreach ($recipients as $recipient) {
+            $this->addRecipientInfo(new RecipientInfo($recipient));
         }
     }
 
     /**
-     * Add FileInfo to the collection
+     * Add RecipientInfo to the collection
      *
-     * @param FileInfo $fileInfo
+     * @param RecipientInfo $recipientInfo
      */
-    public function addFileInfo(FileInfo $fileInfo)
+    public function addRecipientInfo(RecipientInfo $recipientInfo)
     {
-        $this->fileInfos[] = $fileInfo;
+        $this->recipientInfos[] = $recipientInfo;
     }
 
     /**
@@ -54,8 +59,8 @@ class FileInfoCollection implements ParameterInterface
     public function build()
     {
         $ret = array();
-        foreach ($this->fileInfos as $fileInfo) {
-            $ret[] = $fileInfo->build();
+        foreach ($this->recipientInfos as $recipientInfo) {
+            $ret[] = $recipientInfo->build();
         }
 
         return $ret;

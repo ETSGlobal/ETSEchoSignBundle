@@ -15,8 +15,13 @@
  * limitations under the License.
  */
 
-namespace ETS\EchoSignBundle\Api;
+namespace ETS\EchoSignBundle\Api\Parameter;
 
+/**
+ * Class DocumentCreationInfo contains information to create a document
+ *
+ * @package ETS\EchoSignBundle\Api\Parameter
+ */
 class DocumentCreationInfo implements ParameterInterface
 {
     const SIGNATURE_TYPE_ESIGN = 'ESIGN';
@@ -59,6 +64,7 @@ class DocumentCreationInfo implements ParameterInterface
      * @var string
      */
     private $debugPrefix;
+
     /**
      * Constructor
      *

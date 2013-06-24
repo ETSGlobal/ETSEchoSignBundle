@@ -15,11 +15,13 @@
  * limitations under the License.
  */
 
-namespace ETS\EchoSignBundle\Tests;
+namespace ETS\EchoSignBundle\Tests\Api;
 
-use ETS\EchoSignBundle\Api\Client;
-use ETS\EchoSignBundle\Exception\DocumentNotFoundException;
-
+/**
+ * Class ClientTest
+ *
+ * @package ETS\EchoSignBundle\Tests\Api
+ */
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -27,7 +29,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testSendDocument()
     {
-        $documentCreationInfo = $this->getMockBuilder('ETS\EchoSignBundle\Api\DocumentCreationInfo')
+        $documentCreationInfo = $this->getMockBuilder('ETS\EchoSignBundle\Api\Parameter\DocumentCreationInfo')
                                      ->disableOriginalConstructor()
                                      ->getMock();
 
@@ -103,9 +105,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetNotExistDocumentInfo()
     {
-        $mockClient = $this->getMock('ETS\EchoSignBundle\Api\Client', array('apiCall'), array('key', 'gateway', 'wsdl'));
+        $mockClient = $this->getMock('ETS\EchoSignBundle\Api\Client', array('call'), array('key', 'gateway', 'wsdl'));
         $mockClient->expects($this->any())
-            ->method('apiCall')
+            ->method('call')
             ->will($this->throwException(new \SoapFault('0', 'SoapFault')));
 
         $result = $mockClient->getDocumentInfo('mock_document_key');
@@ -168,9 +170,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     private function getMockClient($returnValue)
     {
-        $mockClient = $this->getMock('ETS\EchoSignBundle\Api\Client', array('apiCall'), array('key', 'gateway', 'wsdl'));
+        $mockClient = $this->getMock('ETS\EchoSignBundle\Api\Client', array('call'), array('key', 'gateway', 'wsdl'));
         $mockClient->expects($this->any())
-            ->method('apiCall')
+            ->method('call')
             ->will($this->returnValue($returnValue));
 
         return $mockClient;
