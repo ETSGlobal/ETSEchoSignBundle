@@ -5,15 +5,15 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="ets.echo.sign.client.class">ETS\EchoSignBundle\Api\Client</parameter>
+        <parameter key="ets.echo_sign.client.class">ETS\EchoSignBundle\Api\Client</parameter>
     </parameters>
 
     <services>
-        <service id="ets.echo.sign.client" class="%ets.echo.sign.client.class%">
-            <argument>%ets.echo.sign.api.key%</argument>
-            <argument>%ets.echo.sign.api.gateway%</argument>
-            <argument>%ets.echo.sign.api.wsdl%</argument>
-            <argument>%ets.echo.sign.debug.prefix%</argument>
+        <service id="ets.echo_sign.client" class="%ets.echo_sign.client.class%">
+            <argument>%ets.echo_sign.api.key%</argument>
+            <argument>%ets.echo_sign.api.gateway%</argument>
+            <argument>%ets.echo_sign.api.wsdl%</argument>
+            <argument>%ets.echo_sign.debug.prefix%</argument>
         </service>
     </services>
 </container>

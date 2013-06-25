@@ -64,3 +64,7 @@ $this->getContainer()->get('ets.echo.sign.client')->removeDocument($documentKey)
 ```
 $this->getContainer()->get('ets.echo.sign.client')->getMyDocuments();
 ```
+
+Code License:
+=================
+[Resources/meta/LICENSE](https://github.com/ETSGlobal/ETSEchoSignBundle/blob/master/Resources/meta/LICENSE)
