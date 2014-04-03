@@ -13,6 +13,22 @@ composer.phar require ets/echo-signbundle
 ```
 Use dev-master when it demands for which version to install.
 
+##Enabling the bundle
+
+Enable the bundle in the kernel:
+``` php
+<?php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new ETS\EchoSignBundle\ETSEchoSignBundle()
+    );
+}
+```
+
 Configuration
 =================
 The bundle requires 3 mandatory parameters, in your config.yml:
