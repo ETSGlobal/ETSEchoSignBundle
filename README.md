@@ -13,6 +13,22 @@ composer.phar require ets/echo-signbundle
 ```
 Use dev-master when it demands for which version to install.
 
+##Enabling the bundle
+
+Enable the bundle in the kernel:
+``` php
+<?php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new ETS\EchoSignBundle\ETSEchoSignBundle()
+    );
+}
+```
+
 Configuration
 =================
 The bundle requires 3 mandatory parameters, in your config.yml:
@@ -51,18 +67,18 @@ The method return a document key of the newly uploaded file
 
 **To get info on a document**
 ```
-$this->getContainer()->get('ets.echo.sign.client')->getDocumentInfo($documentKey);
+$this->getContainer()->get('ets.echo_sign.client')->getDocumentInfo($documentKey);
 ```
 If the document doesn't exist, it will return null instead of a SoapFault exception as implemented by the original API.
 
 **To remove a document**
 ```
-$this->getContainer()->get('ets.echo.sign.client')->removeDocument($documentKey);
+$this->getContainer()->get('ets.echo_sign.client')->removeDocument($documentKey);
 ```
 
 **To retrieve all documents**
 ```
-$this->getContainer()->get('ets.echo.sign.client')->getMyDocuments();
+$this->getContainer()->get('ets.echo_sign.client')->getMyDocuments();
 ```
 
 Code License:
