@@ -7,13 +7,13 @@
     "license": "Apache2",
     "authors": [
         {
-            "name": "ETS dev team",
-            "email": "e4-devteam@etsglobal.org"
+            "name": "ETS Global Dev team",
+            "email": "ecs@etsglobal.org"
         }
     ],
     "require": {
-        "php": ">=5.3.2",
-        "symfony/framework-bundle" : "~2.4",
+        "php": ">=5.3.3",
+        "symfony/framework-bundle" : "~2.1",
         "ext-soap": "*",
         "ext-openssl": "*"
     },
