@@ -109,7 +109,6 @@ class Client
         } catch (\SoapFault $e) {
             return null;
         }
-
     }
 
     /**
@@ -167,7 +166,9 @@ class Client
             )
         ));
 
-        return $result->getDocumentUrlsResult->urls->DocumentUrl->url;
+        return null !== $result->getDocumentUrlsResult->urls
+            ? $result->getDocumentUrlsResult->urls->DocumentUrl->url
+            : null;
     }
 
     /**
