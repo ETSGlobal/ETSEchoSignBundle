@@ -40,7 +40,7 @@ class RecipientInfo implements ParameterInterface
     /**
      * Constructor
      *
-     * @param $email
+     * @param string $email
      * @param string $role
      */
     public function __construct($email, $role = RecipientInfo::RECIPIENT_ROLE_SIGNER)
@@ -58,7 +58,7 @@ class RecipientInfo implements ParameterInterface
     {
         return array(
             'email' => $this->email,
-            'role' => $this->role
+            'role'  => $this->role
         );
     }
 }

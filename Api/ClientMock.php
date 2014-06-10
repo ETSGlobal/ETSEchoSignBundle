@@ -8,7 +8,7 @@ class ClientMock extends Client
      * Fake api call
      *
      * @param string $method
-     * @param array $params
+     * @param array  $params
      *
      * @return stdClass result of the api call
      */

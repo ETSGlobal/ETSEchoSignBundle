@@ -69,11 +69,11 @@ class DocumentCreationInfo implements ParameterInterface
      * Constructor
      *
      * @param RecipientInfoCollection $recipients
-     * @param $name
-     * @param FileInfoCollection $fileInfos
-     * @param $signatureType
-     * @param $signatureFlow
-     * @param array $optionalParams
+     * @param string                  $name
+     * @param FileInfoCollection      $fileInfos
+     * @param string                  $signatureType
+     * @param string                  $signatureFlow
+     * @param array                   $optionalParams
      */
     public function __construct(RecipientInfoCollection $recipients, $name, FileInfoCollection $fileInfos, $signatureType = DocumentCreationInfo::SIGNATURE_TYPE_ESIGN, $signatureFlow = DocumentCreationInfo::SIGNATURE_FLOW_SENDER_SIGNATURE_NOT_REQUIRED, array $optionalParams = array())
     {
@@ -94,13 +94,16 @@ class DocumentCreationInfo implements ParameterInterface
      */
     public function build()
     {
-        return array_merge(array(
-            'fileInfos' => $this->fileInfos->build(),
-            'name' => $this->getDebugPrefix() ? $this->getDebugPrefix() . $this->name : $this->name,
-            'signatureFlow' => $this->signatureFlow,
-            'signatureType' => $this->signatureType,
-            'recipients' => $this->recipients->build()
-        ), $this->optionalParams);
+        return array_merge(
+            array(
+                'fileInfos'     => $this->fileInfos->build(),
+                'name'          => $this->getDebugPrefix() ? $this->getDebugPrefix() . $this->name : $this->name,
+                'signatureFlow' => $this->signatureFlow,
+                'signatureType' => $this->signatureType,
+                'recipients'    => $this->recipients->build()
+            ),
+            $this->optionalParams
+        );
     }
 
     /**

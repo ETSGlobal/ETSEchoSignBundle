@@ -21,14 +21,17 @@ class DocumentNotFoundException extends \Exception
     /**
      * Constructor
      *
-     * @param string $documentKey
-     * @param null $errorMessage
-     * @param null $errorCode
+     * @param string     $documentKey
+     * @param string     $errorMessage
+     * @param string     $errorCode
      * @param \Exception $previous
      */
     public function __construct($documentKey, $errorMessage = null, $errorCode = null, \Exception $previous = null)
     {
-        $message = sprintf('Error while removing document with key: %s. Error message: %s. Error code: %s', $documentKey, $errorMessage, $errorCode);
-        parent::__construct($message, 0, $previous);
+        parent::__construct(
+            sprintf('Error while removing document with key: %s. Error message: %s. Error code: %s', $documentKey, $errorMessage, $errorCode),
+            0,
+            $previous
+        );
     }
 }

@@ -76,6 +76,7 @@ class Client
 
     /**
      * @param DocumentCreationInfo $documentInfo
+     *
      * @return string document_key
      */
     public function sendDocument(DocumentCreationInfo $documentInfo)
@@ -85,7 +86,7 @@ class Client
         }
 
         $result = $this->call('sendDocument', array(
-            'apiKey' => $this->key,
+            'apiKey'               => $this->key,
             'documentCreationInfo' => $documentInfo->build()
         ));
 
@@ -103,7 +104,7 @@ class Client
     {
         try {
             return $this->call('getDocumentInfo', array(
-                'apiKey' => $this->key,
+                'apiKey'      => $this->key,
                 'documentKey' => $documentKey
             ));
         } catch (\SoapFault $e) {
@@ -118,17 +119,16 @@ class Client
      *
      * @return boolean status of the remove process
      *
-     * @throws \Exception
+     * @throws ETS\EchoSignBundle\Exception\DocumentNotFoundException
      */
     public function removeDocument($documentKey)
     {
         $result = $this->call('removeDocument', array(
-            'apiKey' => $this->key,
+            'apiKey'      => $this->key,
             'documentKey' => $documentKey
         ));
 
         if ($result->removeDocumentResult->errorMessage || !$result->removeDocumentResult->success) {
-
             throw new DocumentNotFoundException($documentKey, $result->removeDocumentResult->errorMessage, $result->removeDocumentResult->errorCode);
         }
 
@@ -152,18 +152,16 @@ class Client
     /**
      * Get combined documents pdf url
      *
-     * @param $documentKey
+     * @param string $documentKey
      *
      * @return string
      */
     public function getDocumentUrls($documentKey)
     {
         $result = $this->call('getDocumentUrls', array(
-            'apiKey' => $this->key,
+            'apiKey'      => $this->key,
             'documentKey' => $documentKey,
-            'options' => array(
-                'combine' => true
-            )
+            'options'     => array('combine' => true)
         ));
 
         return null !== $result->getDocumentUrlsResult->urls
@@ -175,7 +173,7 @@ class Client
      * Make an api call
      *
      * @param string $method
-     * @param array $params
+     * @param array  $params
      *
      * @return stdClass result of the api call
      */

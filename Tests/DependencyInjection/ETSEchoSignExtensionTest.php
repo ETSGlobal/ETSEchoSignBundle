@@ -2,9 +2,9 @@
 
 namespace ETS\EchoSignBundle\Tests\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 use ETS\EchoSignBundle\DependencyInjection\ETSEchoSignExtension;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class ETSEchoSignExtensionTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,9 +15,9 @@ class ETSEchoSignExtensionTest extends \PHPUnit_Framework_TestCase
         $config = array(
             'ets_echo_sign' => array(
                 'api' => array(
-                    'key' => 'API_KEY',
+                    'key'     => 'API_KEY',
                     'gateway' => 'API_GATEWAY',
-                    'wsdl' => 'API_WSDL'
+                    'wsdl'    => 'API_WSDL'
                 ),
                 'debug' => array(
                     'prefix' => 'TEST_'

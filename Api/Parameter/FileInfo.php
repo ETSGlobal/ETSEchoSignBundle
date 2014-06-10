@@ -37,8 +37,8 @@ class FileInfo implements ParameterInterface
     /**
      * Constructor
      *
-     * @param $filename
-     * @param $file
+     * @param string $filename
+     * @param string $file
      */
     public function __construct($filename, $file)
     {
@@ -54,7 +54,7 @@ class FileInfo implements ParameterInterface
     public function build()
     {
         return array(
-            'file' => file_get_contents($this->file),
+            'file'     => file_get_contents($this->file),
             'fileName' => $this->filename
         );
     }
