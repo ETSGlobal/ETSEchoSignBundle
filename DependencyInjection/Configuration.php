@@ -22,7 +22,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-
     /**
      * Generates the configuration tree builder.
      *
@@ -57,7 +56,15 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('prefix')->defaultNull()->end()
                         ->end()
                     ->end()
+                    ->arrayNode('recipients')
+                        ->isRequired()
+                        ->requiresAtLeastOneElement()
+                        ->cannotBeEmpty()
+                        ->prototype('scalar')
+                        ->end()
+                    ->end()
                 ->end()
-            ->end();
+            ->end()
+        ;
     }
 }

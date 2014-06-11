@@ -6,6 +6,7 @@
 
     <parameters>
         <parameter key="ets.echo_sign.client.class">ETS\EchoSignBundle\Api\Client</parameter>
+        <parameter key="ets.echo_sign.recipient_info_collection.class">ETS\EchoSignBundle\Api\Parameter\RecipientInfoCollection</parameter>
     </parameters>
 
     <services>
@@ -14,6 +15,10 @@
             <argument>%ets.echo_sign.api.gateway%</argument>
             <argument>%ets.echo_sign.api.wsdl%</argument>
             <argument>%ets.echo_sign.debug.prefix%</argument>
+        </service>
+
+        <service id="ets.echo_sign.recipient_info_collection" class="%ets.echo_sign.recipient_info_collection.class%">
+            <argument>%ets.echo_sign.recipients%</argument>
         </service>
     </services>
 </container>

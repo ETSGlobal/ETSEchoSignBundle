@@ -25,7 +25,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class ETSEchoSignExtension extends Extension
 {
-
     /**
      * Loads a specific configuration.
      *
@@ -38,9 +37,8 @@ class ETSEchoSignExtension extends Extension
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
         $processor = new Processor();
-        $config = $processor->processConfiguration($configuration, $config);
+        $config = $processor->processConfiguration(new Configuration(), $config);
 
         $xmlLoader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $xmlLoader->load('services.xml');
@@ -52,5 +50,7 @@ class ETSEchoSignExtension extends Extension
         foreach ($config['debug'] as $key => $value) {
             $container->setParameter(sprintf('ets.echo_sign.debug.%s', $key), $value);
         }
+
+        $container->setParameter('ets.echo_sign.recipients', $config['recipients']);
     }
 }
