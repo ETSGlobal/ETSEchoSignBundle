@@ -47,9 +47,15 @@ ets_echo_sign:
 ```
 It does nothing more than adding the prefix to the filename when uploading. Since EchoSign offers no way to organize your files, the prefix should help you classify uploaded files in a "cleaner" way. For example, you could have a prefix "DEV_" for local development, "PREPROD_" for preprod environment.
 
+And you have to specify a list of email addresses to use as recipients:
+```
+ets_echo_sign:
+    recipients:  [email1@corp.com]
+```
+
 Available APIs
-=================
-Client service offer three wrappers to the most used methods:
+==============
+Client service offers wrappers to the most used methods:
 - sendDocument
 - getDocumentInfo
 - removeDocument
@@ -63,7 +69,7 @@ $fileCollections->addFileInfo(new FileInfo('file.pdf', 'file.pdf'));
 $documentCreationInfo = new DocumentCreationInfo($recipients, 'Test document', $fileCollections);
 $this->getContainer()->get('ets.echo.sign.client')->sendDocument($documentCreationInfo);
 ```
-The method return a document key of the newly uploaded file
+The method returns the document key of the newly uploaded file
 
 **To get info on a document**
 ```
@@ -82,5 +88,5 @@ $this->getContainer()->get('ets.echo_sign.client')->getMyDocuments();
 ```
 
 Code License:
-=================
+=============
 [Resources/meta/LICENSE](https://github.com/ETSGlobal/ETSEchoSignBundle/blob/master/Resources/meta/LICENSE)
