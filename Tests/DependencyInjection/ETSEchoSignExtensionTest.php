@@ -21,7 +21,8 @@ class ETSEchoSignExtensionTest extends \PHPUnit_Framework_TestCase
                 ),
                 'debug' => array(
                     'prefix' => 'TEST_'
-                )
+                ),
+                'recipients' => array('toto@gmail.com')
             )
         );
         $extension = new ETSEchoSignExtension();
@@ -31,5 +32,6 @@ class ETSEchoSignExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('API_GATEWAY', $container->getParameter('ets.echo_sign.api.gateway'));
         $this->assertEquals('API_WSDL', $container->getParameter('ets.echo_sign.api.wsdl'));
         $this->assertEquals('TEST_', $container->getParameter('ets.echo_sign.debug.prefix'));
+        $this->assertContains('toto@gmail.com', $container->getParameter('ets.echo_sign.recipients'));
     }
 }
