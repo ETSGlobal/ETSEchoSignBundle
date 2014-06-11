@@ -6,12 +6,12 @@ ETSEchoSignBundle provides a wrapper to EchoSign APIs: https://secure.echosign.c
 [![Build Status](https://api.travis-ci.org/ETSGlobal/ETSEchoSignBundle.png)](https://travis-ci.org/ETSGlobal/ETSEchoSignBundle) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ETSGlobal/ETSEchoSignBundle/badges/quality-score.png?s=62c6492d05fbf1f540711d9b2968587588534d3d)](https://scrutinizer-ci.com/g/ETSGlobal/ETSEchoSignBundle/) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/9e34893d-314f-471b-839b-a3766e78de58/mini.png)](https://insight.sensiolabs.com/projects/9e34893d-314f-471b-839b-a3766e78de58)
 
 Installation
-=================
+============
 You can install the bundle by using composer.
 ```
-composer.phar require ets/echo-signbundle
+composer.phar require ets/echosign-bundle
 ```
-Use dev-master when it demands for which version to install.
+Use dev-master when it asks which version to install.
 
 ##Enabling the bundle
 
@@ -31,7 +31,7 @@ public function registerBundles()
 
 Configuration
 =================
-The bundle requires 3 mandatory parameters, in your config.yml:
+The bundle requires mandatory parameters, in your config.yml:
 ```
 ets_echo_sign:
     api:
