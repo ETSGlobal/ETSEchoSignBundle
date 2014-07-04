@@ -176,9 +176,15 @@ class Client
      * @param array  $params
      *
      * @return stdClass result of the api call
+     *
+     * @throws \Exception If the $method call failed
      */
     protected function call($method, array $params)
     {
-        return call_user_func(array($this->getSoapClient(), $method), $params);
+        if (false !== $callResult = call_user_func(array($this->getSoapClient(), $method), $params)) {
+            return $callResult;
+        }
+
+        throw new \Exception(sprintf('Failed to call Soap method [%s] with parameters [%s]', $method, implode(', ', $params)));
     }
 }
