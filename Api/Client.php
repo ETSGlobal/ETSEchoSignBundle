@@ -129,7 +129,11 @@ class Client
         ));
 
         if ($result->removeDocumentResult->errorMessage || !$result->removeDocumentResult->success) {
-            throw new DocumentNotFoundException($documentKey, $result->removeDocumentResult->errorMessage, $result->removeDocumentResult->errorCode);
+            throw new DocumentNotFoundException(
+                $documentKey,
+                $result->removeDocumentResult->errorMessage,
+                $result->removeDocumentResult->errorCode
+            );
         }
 
         return $result->removeDocumentResult->success;
@@ -181,10 +185,10 @@ class Client
      */
     protected function call($method, array $params)
     {
-        if (false !== $callResult = call_user_func(array($this->getSoapClient(), $method), $params)) {
-            return $callResult;
+        if (false === $callResult = call_user_func(array($this->getSoapClient(), $method), $params)) {
+            throw new \Exception(sprintf('Failed to call Soap method [%s] with parameters [%s]', $method, implode(', ', $params)));
         }
 
-        throw new \Exception(sprintf('Failed to call Soap method [%s] with parameters [%s]', $method, implode(', ', $params)));
+        return $callResult;
     }
 }
